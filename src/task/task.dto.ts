@@ -1,3 +1,4 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
   IsEnum,
   IsOptional,
@@ -18,16 +19,19 @@ export class TaskDto {
   @IsOptional()
   id: string;
 
+  @ApiProperty({ type: String, minLength: 3, maxLength: 256 })
   @IsString()
   @MinLength(3)
   @MaxLength(256)
   title: string;
 
+  @ApiProperty({ type: String, minLength: 3, maxLength: 512 })
   @IsString()
   @MinLength(3)
   @MaxLength(512)
   description: string;
 
+  @ApiPropertyOptional({ enum: TaskStatusEnum })
   @IsEnum(TaskStatusEnum)
   @IsOptional()
   status: string;
